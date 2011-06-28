@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'mnmliconsRegular';
+    src: url('mnmliconsv21-webfont.eot');
+    src: url('mnmliconsv21-webfont.eot?#iefix') format('eot'),
+         url('mnmliconsv21-webfont.woff') format('woff'),
+         url('mnmliconsv21-webfont.ttf') format('truetype'),
+         url('mnmliconsv21-webfont.svg#webfont5XBFMzrm') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.i {
+  font-family: "mnmliconsRegular" !important;
+  font-weight: 300 !important;
+}
+

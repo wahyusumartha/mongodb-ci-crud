@@ -1,0 +1,58 @@
+/*********************************************************************/
+/*  ____           _    _                                            */
+/* |  _ \ ___ _ __| | _(_)_ __  ___                                  */
+/* | |_) / _ \ '__| |/ / | '_ \/ __|                                 */
+/* |  __/  __/ |  |   <| | | | \__ \                                 */
+/* |_|   \___|_|  |_|\_\_|_| |_|___/.LESS                            */
+/* Design & Develop the Web, Faster.                                 */
+/*                                                                   */
+/*********************************************************************/
+/*                                                                   */
+/*  Developed by:        Carlos Elias                                */
+/*                       Rodrigo Fuentealba                          */
+/*                       Alvaro Veliz                                */
+/*                                                                   */
+/*  License:             MIT                                         */
+/*                                                                   */
+/*********************************************************************/
+
+form {
+  fieldset {
+    border: 1px solid @system;
+    margin: 0 0 18px 0;
+    padding: 10px;
+    legend {
+      color: darken(@system, 40%);
+      padding: 0 10px;
+    }
+  }
+  input, select, textarea {
+    border: 1px solid @system;
+    display: block;
+    margin: 0 0 10px 10px;
+    padding: 4px;
+  }
+  input:focus, select:focus, textarea:focus {
+    .transition();
+    .bs(0 0 5px @blue, 0 2px 5px rgba(32,32,32,0.20) inset);
+    border: 1px solid darken(@system, 40%);
+  }
+  input[type="checkbox"] {
+    margin: 3px 4px 0 2px;
+  }
+  input[type="radio"] {
+    margin: 3px 4px 0 0;
+  }
+  label {
+    .font(bold, 0.900em, 1em);
+    display: block;
+    cursor: pointer;
+    margin: 0 10px 5px;
+    input {
+      display: inline-block;
+    }
+  }
+  input, textarea, select {
+    .font(normal, 0.938em, 1.1em);
+  }
+}
