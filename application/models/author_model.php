@@ -50,6 +50,23 @@ class Author_Model extends CI_Model{
 		
 		$this->mongo->db->authors->remove(array('_id' => $criteria['_id']), array('safe' => true));
 	}
+	
+	function all_pagination($limit, $offset){
+		$authors = array();
+		
+		if($offset){
+			$authors = $this->mongo->db->authors->find()->limit($limit)->skip($offset);
+		}else{
+			$authors = $this->mongo->db->authors->find()->limit($limit);
+		}
+		
+		return $authors;
+	}
+	
+	function count(){
+		$total = $this->mongo->db->authors->count();
+		return $total;
+	}
 }
 
 ?>

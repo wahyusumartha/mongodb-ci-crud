@@ -33,8 +33,24 @@ class Blog extends CI_Controller{
 	}
 	
 	
-	function view_author(){
-		$data['authors'] = $this->author->all();
+	function view_author($offset=''){
+		$this->load->library('pagination');
+		
+		$per_page = 2; 
+		$base_url = base_url().'blog/view_author';
+		$total = $this->author->count();
+		
+		
+		$data['authors'] = $this->author->all_pagination($per_page, $offset);
+		
+		$config['per_page'] = $per_page;
+		$config['total_rows'] = $total;
+		$config['uri_segment'] = 3;
+		$config['base_url'] = $base_url;
+		
+		$this->pagination->initialize($config);
+		
+		$data['create_links'] = $this->pagination->create_links();
 		$data['main'] = 'templates/view-author';
 		
 		$this->load->view('index', $data);

@@ -27,4 +27,7 @@
 			</tbody>
 		</table>
 	</div>
+	<div class="pagination" style="margin-left: 45%">
+		<?php echo $create_links;?>
+	</div>
 </div>
