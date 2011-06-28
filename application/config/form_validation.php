@@ -16,6 +16,23 @@ $config = array(
 								'label' => 'Email',
 								'rules' => 'required|valid_email'
 							)
+				),
+				'post' => array(
+							array(
+								'field' => 'title',
+								'label' => 'Title',
+								'rules' => 'required'
+							),
+							array(
+								'field' => 'body',
+								'label' => 'Body',
+								'rules' => 'required'
+							),
+							array(
+								'field' => 'author',
+								'label' => 'Author',
+								'rules' => 'required'
+							)
 				)
 );
 

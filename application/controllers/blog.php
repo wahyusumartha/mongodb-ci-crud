@@ -7,6 +7,7 @@ class Blog extends CI_Controller{
 		$this->load->library('session');
 		
 		$this->load->model('author_model', 'author');
+		$this->load->model('post_model', 'post');
 	}
 	
 	function index(){
@@ -36,10 +37,9 @@ class Blog extends CI_Controller{
 	function view_author($offset=''){
 		$this->load->library('pagination');
 		
-		$per_page = 2; 
+		$per_page = 10; 
 		$base_url = base_url().'blog/view_author';
 		$total = $this->author->count();
-		
 		
 		$data['authors'] = $this->author->all_pagination($per_page, $offset);
 		
@@ -82,5 +82,58 @@ class Blog extends CI_Controller{
 		}	
 	}
 	
+	function view_post(){
+		$this->load->helper('dbreference');
+
+		$data['posts'] = $this->post->all();
+		$data['main'] = 'templates/view-posts';
+		$this->load->view('index',$data);
+	}
+	
+	function add_post(){
+	 	$data['authors'] = $this->author->all_dropdown();
+		$data['main'] = 'templates/add-post';
+		$this->load->view('index', $data);
+	}
+	
+	function save_post(){
+		$this->load->library('form_validation');
+		
+		if($this->form_validation->run('post') == FALSE){
+			$this->session->set_flashdata('error_message', validation_errors());
+			redirect('blog/add_post');
+		}else{
+			$this->post->save();
+			$this->session->set_flashdata('message', 'Post has been saved');
+			redirect('blog/view_post');
+		}
+	}
+	
+	function delete_post($_id){
+		$this->post->delete($_id);
+		$this->session->set_flashdata('message', 'Post has been deleted');
+		redirect('blog/view_post');
+	}
+	
+	function detail_post($_id){
+		$this->session->set_userdata('current_url', base_url().'blog/detail_post/'.$_id);
+		$data['authors'] = $this->author->all_dropdown();
+		$data['post'] = $this->post->find_by_id($_id);
+		$data['main'] = 'templates/update-post';
+		$this->load->view('index', $data);
+	}
+	
+	function update_post(){
+		$this->load->library('form_validation');
+		
+		if($this->form_validation->run('post') == FALSE){
+			$this->session->set_flashdata('error_message', validation_errors());
+			redirect($this->input->post('current_url'));
+		}else{
+			$this->post->update($this->input->post('_id'));
+			$this->session->set_flashdata('message', 'Post has been updated');
+			redirect('blog/view_post');
+		}
+	}
 }
 ?>

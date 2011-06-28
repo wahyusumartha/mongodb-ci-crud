@@ -8,6 +8,12 @@
 				<li>
 					<?php echo anchor('blog/view_author', 'View Authors');?>
 				</li>
+				<li>
+					<?php echo anchor('blog/view_post', 'View Posts');?>
+				</li>
+				<li>
+					<?php echo anchor('blog/add_post', 'Add Post');?>
+				</li>
 			</ul>
 		</div>
 	</div>
