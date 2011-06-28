@@ -21,7 +21,7 @@
 						<td><?php echo $list['fullname'];?></td>
 						<td><?php echo $list['nickname'];?></td>
 						<td><?php echo $list['email'];?></td>
-						<td><?php echo anchor('blog/detail_author/'.$list['_id'],'Edit',array('class'=>'btn sbtn'));?>| <?php echo anchor('blog/delete_author/'.$list['_id'],'Delete',array('class'=>'btn sbtn'));?></td>
+						<td><?php echo anchor('blog/detail_author/'.$list['_id'],'Edit',array('class'=>'btn sbtn'));?> <?php echo anchor('blog/delete_author/'.$list['_id'],'Delete',array('class'=>'btn sbtn'));?></td>
 					</tr>
 				<?php }?>
 			</tbody>
