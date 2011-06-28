@@ -14,6 +14,7 @@ class Author_Model extends CI_Model{
 		);
 		
 		$this->mongo->db->authors->insert($author);
+		$this->mongo->close();
 	}
 	
 	
@@ -55,9 +56,9 @@ class Author_Model extends CI_Model{
 		$authors = array();
 		
 		if($offset){
-			$authors = $this->mongo->db->authors->find()->limit($limit)->skip($offset);
+			$authors = $this->mongo->db->authors->find()->limit($limit)->skip($offset)->sort(array('_id'=> -1));
 		}else{
-			$authors = $this->mongo->db->authors->find()->limit($limit);
+			$authors = $this->mongo->db->authors->find()->limit($limit)->sort(array('_id' => -1));
 		}
 		
 		return $authors;
