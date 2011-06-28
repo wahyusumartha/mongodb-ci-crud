@@ -82,10 +82,23 @@ class Blog extends CI_Controller{
 		}	
 	}
 	
-	function view_post(){
+	function view_post($offset=''){
+		$this->load->library('pagination');
 		$this->load->helper('dbreference');
-
-		$data['posts'] = $this->post->all();
+		
+		$per_page =1;
+		$total = $this->post->count();
+		$base_url = base_url().'blog/view_post';
+		$data['posts'] = $this->post->all_pagination($per_page, $offset);
+		
+		$config['per_page'] = $per_page;
+		$config['uri_segment'] = 3;
+		$config['base_url'] = $base_url;
+		$config['total_rows'] = $total;
+		
+		$this->pagination->initialize($config);
+		
+		$data['create_links'] = $this->pagination->create_links();		
 		$data['main'] = 'templates/view-posts';
 		$this->load->view('index',$data);
 	}

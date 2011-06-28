@@ -28,6 +28,7 @@ class Post_Model extends CI_Model{
 		return $posts;
 	}
 	
+	
 	function find_author_by_reference($post){
 		$author = $this->mongo->db->posts->getDBRef($posts);
 		return $author;
@@ -54,7 +55,7 @@ class Post_Model extends CI_Model{
 	}
 	
 	function count(){
-		return $this->db->posts->count();
+		return $this->mongo->db->posts->count();
 	}
 	
 	function find_by_id($_id){
